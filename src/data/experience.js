@@ -74,7 +74,7 @@ export const experience = [
       'Заказная разработка · для <a href="https://www.youtube.com/c/hardcorefightingchampionship">Hardcore Fighting Championship</a>',
     desc: 'Лендинг для продажи NFC-продукции компании.',
     stack: 'Vue 3',
-    media: [{ placeholder: '+ скриншот' }, { placeholder: '+ видео-превью' }],
+    media: [{ nda: true }, { nda: true }],
   },
   {
     hash: '#006',
