@@ -3,6 +3,7 @@ import { useHead } from '@unhead/vue'
 import TabBar from './components/TabBar.vue'
 import ThemeToggle from './components/ThemeToggle.vue'
 import HeroSection from './components/HeroSection.vue'
+import ServicesSection from './components/ServicesSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import SkillsSection from './components/SkillsSection.vue'
 import ExperienceSection from './components/ExperienceSection.vue'
@@ -12,7 +13,7 @@ import AppFooter from './components/AppFooter.vue'
 import Lightbox from './components/Lightbox.vue'
 
 const title = 'Арман Хачатрян — Frontend-разработчик'
-const description = 'Frontend-разработчик (Vue.js/Nuxt.js). Опыт коммерческой разработки SaaS-продуктов, CMS и real-time функциональности.'
+const description = 'Разработка frontend на Vue.js и Nuxt.js: SaaS-продукты, веб-приложения, real-time и интеграции. Арман Хачатрян, frontend-разработчик.'
 
 useHead({
   title,
@@ -32,6 +33,7 @@ useHead({
 
   <main>
     <HeroSection />
+    <ServicesSection />
     <AboutSection />
     <SkillsSection />
     <ExperienceSection />

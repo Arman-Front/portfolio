@@ -3,6 +3,7 @@ import { ref, watch, nextTick } from 'vue'
 import { useScrollSpy } from '../composables/useScrollSpy.js'
 
 const tabs = [
+  { id: 'services', label: 'services.md' },
   { id: 'about', label: 'about.md' },
   { id: 'skills', label: 'skills.js' },
   { id: 'experience', label: 'experience.log' },
