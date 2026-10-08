@@ -9,4 +9,8 @@ export default defineConfig({
   // может быть недоступен (например, под VPN-туннелем) → ERR_CONNECTION_REFUSED
   server: { host: '127.0.0.1' },
   preview: { host: '127.0.0.1' },
+  // Шрифты не встраиваем в CSS как base64: браузер скачает только нужные по unicode-range
+  build: {
+    assetsInlineLimit: (file) => (/\.(woff2?|ttf)$/.test(file) ? false : undefined),
+  },
 })
