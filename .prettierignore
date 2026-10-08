@@ -1,0 +1,10 @@
+dist/
+package-lock.json
+public/
+# Стили намеренно записаны компактно, по одному правилу в строку
+src/style.css
+# Блок кода и JSON собраны вручную через <br/> — переформатирование сломает отступы
+src/components/SkillsSection.vue
+src/components/ContactSection.vue
+# Сниппет Яндекс.Метрики оставляем как есть
+index.html

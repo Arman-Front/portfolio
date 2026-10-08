@@ -1,5 +1,6 @@
 import { reactive } from 'vue'
 
+// images: массив { src, alt }
 const state = reactive({
   open: false,
   images: [],
@@ -7,17 +8,24 @@ const state = reactive({
   dir: null,
 })
 
+// Элемент, на который вернётся фокус после закрытия
+let returnFocusEl = null
+
 function openLightbox(images, index) {
+  returnFocusEl = document.activeElement
   state.images = images
   state.index = index
   state.dir = null
   state.open = true
-  document.body.style.overflow = 'hidden'
+  // Блокируем прокрутку на <html>: вместе с scrollbar-gutter: stable вёрстка не сдвигается
+  document.documentElement.style.overflow = 'hidden'
 }
 
 function closeLightbox() {
   state.open = false
-  document.body.style.overflow = ''
+  document.documentElement.style.overflow = ''
+  returnFocusEl?.focus()
+  returnFocusEl = null
 }
 
 function next() {

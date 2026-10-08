@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { useLightbox } from '../composables/useLightbox.js'
 
-// items: array of { src, alt } for real screenshots,
+// items: array of { src, full, width, height, alt } for real screenshots (see data/media.js),
 // or { placeholder: '+ скриншот' } / { nda: true } for empty slots
 const props = defineProps({
   items: { type: Array, required: true },
@@ -29,9 +29,8 @@ function update() {
 }
 
 function onImgClick(item) {
-  const srcs = images.map((i) => i.src)
-  const idx = images.indexOf(item)
-  openLightbox(srcs, idx)
+  const slides = images.map((i) => ({ src: i.full, alt: i.alt }))
+  openLightbox(slides, images.indexOf(item))
 }
 
 onMounted(() => {
@@ -46,7 +45,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="media-row" ref="rowEl">
+  <div ref="rowEl" class="media-row">
     <div class="media-fade left" :class="{ visible: fadeLeft }"></div>
 
     <div
@@ -55,9 +54,35 @@ onUnmounted(() => {
       class="media-slot"
       :class="{ 'has-media': !!item.src }"
     >
-      <img v-if="item.src" :src="item.src" :alt="item.alt" loading="lazy" @click="onImgClick(item)" />
+      <button
+        v-if="item.src"
+        type="button"
+        class="media-open"
+        :aria-label="`${item.alt}: открыть в полном размере`"
+        @click="onImgClick(item)"
+      >
+        <img
+          :src="item.src"
+          :width="item.width"
+          :height="item.height"
+          :alt="item.alt"
+          loading="lazy"
+          decoding="async"
+        />
+      </button>
       <span v-else-if="item.nda" class="hint nda">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>NDA
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="5" y="11" width="14" height="9" rx="2" />
+          <path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg
+        >NDA
       </span>
       <span v-else class="hint">{{ item.placeholder }}</span>
     </div>

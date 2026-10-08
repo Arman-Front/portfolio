@@ -1,3 +1,9 @@
+<script setup>
+import { contactByKey, linkAttrs } from '../data/contacts.js'
+
+const heroLinks = ['telegram', 'email', 'whatsapp'].map((key) => contactByKey[key])
+</script>
+
 <template>
   <section id="hero">
     <div class="hero-line">~/portfolio $ whoami</div>
@@ -9,9 +15,9 @@
       небольших продуктовых команд.
     </p>
     <div class="links">
-      <a class="chip" href="https://t.me/holy_howard">Telegram</a>
-      <a class="chip" href="mailto:armanauts@gmail.com">Email</a>
-      <a class="chip" href="https://wa.me/79307997060">WhatsApp</a>
+      <a v-for="c in heroLinks" :key="c.key" class="chip" :href="c.href" v-bind="linkAttrs(c.href)">
+        {{ c.name }}
+      </a>
     </div>
   </section>
 </template>

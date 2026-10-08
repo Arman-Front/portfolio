@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch, nextTick } from 'vue'
 import { useScrollSpy } from '../composables/useScrollSpy.js'
+import { prefersReducedMotion } from '../composables/motion.js'
 
 const tabs = [
   { id: 'services', label: 'services.md' },
@@ -26,7 +27,10 @@ function centerTab(id) {
   const tabRect = tab.getBoundingClientRect()
   const barRect = bar.getBoundingClientRect()
   const delta = tabRect.left + tabRect.width / 2 - (barRect.left + barRect.width / 2)
-  bar.scrollTo({ left: bar.scrollLeft + delta, behavior: 'smooth' })
+  bar.scrollTo({
+    left: bar.scrollLeft + delta,
+    behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+  })
 }
 
 watch(activeId, (id) => {
@@ -35,15 +39,15 @@ watch(activeId, (id) => {
 </script>
 
 <template>
-  <nav class="tabbar" ref="tabbarEl">
+  <nav ref="tabbarEl" class="tabbar">
     <div class="tabbar-inner">
       <a
         v-for="tab in tabs"
         :key="tab.id"
+        :ref="(el) => setTabRef(tab.id, el)"
         class="tab"
         :class="{ active: activeId === tab.id }"
         :href="`#${tab.id}`"
-        :ref="(el) => setTabRef(tab.id, el)"
       >
         <span class="dot">●</span>{{ tab.label }}
       </a>

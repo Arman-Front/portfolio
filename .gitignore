@@ -1,20 +1,22 @@
-### Vue template
-# gitignore template for Vue.js projects
-#
-# Recommended template: Node.gitignore
-
-# TODO: where does this rule come from?
-docs/_book
-
-# TODO: where does this rule come from?
-test/
-
-### Vuejs template
-# Recommended template: Node.gitignore
-
+# dependencies
 node_modules/
-dist/
-npm-debug.log
-yarn-error.log
-.idea/
 
+# build
+dist/
+.vite-ssg-temp/
+.lighthouseci/
+
+# logs
+npm-debug.log*
+yarn-error.log*
+
+# env
+.env
+.env.*
+!.env.example
+
+# editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

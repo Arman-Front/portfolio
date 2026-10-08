@@ -1,3 +1,8 @@
+<script setup>
+import InfoGrid from './InfoGrid.vue'
+import { integrations } from '../data/services.js'
+</script>
+
 <template>
   <section id="skills">
     <h2><span class="path">~/</span><span class="fname">skills.js</span></h2>
@@ -16,14 +21,6 @@
       <span class="tag">Pinia</span><span class="tag">SCSS</span><span class="tag">PWA</span>
     </div>
 
-    <div class="integr-grid" style="margin-top: 28px">
-      <div class="integr-item">LiveKit<span>видеоконференции</span></div>
-      <div class="integr-item">Stripe<span>платежи</span></div>
-      <div class="integr-item">CloudPayments<span>платежи</span></div>
-      <div class="integr-item">Centrifuge.js<span>клиентский чат</span></div>
-      <div class="integr-item">WebSocket<span>real-time уведомления</span></div>
-      <div class="integr-item">PWA<span>прогрессивные веб-приложения</span></div>
-      <div class="integr-item">AI API<span>интеграция AI-сервисов</span></div>
-    </div>
+    <InfoGrid :items="integrations" style="margin-top: 28px" />
   </section>
 </template>

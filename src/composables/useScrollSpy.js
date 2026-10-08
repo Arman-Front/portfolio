@@ -9,9 +9,7 @@ export function useScrollSpy(sectionIds) {
     const tabbar = document.querySelector('.tabbar')
     if (!tabbar) return
     const line = tabbar.getBoundingClientRect().bottom + 4
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean)
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean)
     if (!sections.length) return
 
     let current = sections[0]

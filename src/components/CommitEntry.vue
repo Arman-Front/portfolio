@@ -1,5 +1,6 @@
 <script setup>
 import MediaRow from './MediaRow.vue'
+import { linkAttrs } from '../data/contacts.js'
 
 defineProps({
   item: { type: Object, required: true },
@@ -16,7 +17,7 @@ defineProps({
       <div v-if="item.metaHtml" class="commit-meta" v-html="item.metaHtml"></div>
       <div v-else class="commit-meta">{{ item.meta }}</div>
       <div v-if="item.link" class="proj-link">
-        <a :href="item.link.href" target="_blank">{{ item.link.label }}</a>
+        <a :href="item.link.href" v-bind="linkAttrs(item.link.href)">{{ item.link.label }}</a>
       </div>
       <p v-if="item.desc">{{ item.desc }}</p>
       <div v-if="item.stack" class="stack-line">{{ item.stack }}</div>

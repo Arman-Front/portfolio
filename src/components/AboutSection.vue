@@ -50,9 +50,9 @@ onUnmounted(() => {
 <template>
   <section id="about">
     <h2><span class="path">~/</span><span class="fname">about.md</span></h2>
-    <div class="gutter" ref="gutterEl">
-      <div class="linenums" ref="linenumsEl"></div>
-      <div class="content" ref="contentEl">
+    <div ref="gutterEl" class="gutter">
+      <div ref="linenumsEl" class="linenums"></div>
+      <div ref="contentEl" class="content">
         <p>
           Frontend-разработчик с опытом коммерческой разработки SaaS-продуктов и веб-сервисов.
           Большую часть карьеры работал в небольших командах, самостоятельно отвечая за

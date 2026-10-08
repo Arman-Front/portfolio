@@ -10,20 +10,41 @@ import ExperienceSection from './components/ExperienceSection.vue'
 import PetProjectsSection from './components/PetProjectsSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import AppFooter from './components/AppFooter.vue'
-import Lightbox from './components/Lightbox.vue'
+import ImageLightbox from './components/ImageLightbox.vue'
+import { SITE_URL, site } from './data/site.js'
+import { contactByKey, contacts } from './data/contacts.js'
 
-const title = 'Арман Хачатрян — Frontend-разработчик'
-const description = 'Разработка frontend на Vue.js и Nuxt.js: SaaS-продукты, веб-приложения, real-time и интеграции. Арман Хачатрян, frontend-разработчик.'
+const { title, description, ogImage } = site
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: site.jobTitle,
+  url: SITE_URL,
+  email: contactByKey.email.label,
+  sameAs: contacts.filter((c) => c.href.startsWith('http')).map((c) => c.href),
+  knowsAbout: ['Vue.js', 'Nuxt.js', 'TypeScript', 'JavaScript', 'Frontend'],
+}
 
 useHead({
   title,
+  link: [{ rel: 'canonical', href: SITE_URL }],
   meta: [
     { name: 'description', content: description },
-    { property: 'og:type', content: 'website' },
+    { property: 'og:type', content: 'profile' },
+    { property: 'og:site_name', content: site.name },
+    { property: 'og:url', content: SITE_URL },
     { property: 'og:title', content: title },
     { property: 'og:description', content: description },
+    { property: 'og:image', content: ogImage },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:image:alt', content: title },
     { property: 'og:locale', content: 'ru_RU' },
+    { name: 'twitter:card', content: 'summary_large_image' },
   ],
+  script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(person) }],
 })
 </script>
 
@@ -42,5 +63,5 @@ useHead({
   </main>
 
   <AppFooter />
-  <Lightbox />
+  <ImageLightbox />
 </template>
